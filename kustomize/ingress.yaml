@@ -2,10 +2,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
   name: podinfo
 spec:
+  ingressClassName: nginx
   rules:
-  - host: "*.us-east-1.elb.amazonaws.com"
+  - host: "*"
     http:
       paths:
       - path: /
@@ -15,4 +18,3 @@ spec:
             name: podinfo
             port:
               number: 9898
-  ingressClassName: nginx
